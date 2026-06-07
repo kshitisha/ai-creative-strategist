@@ -12,7 +12,7 @@ export default function InputForm({ onSubmit }) {
     setForm({ ...form, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!form.brandName || !form.brandDescription || !form.targetAudience || !form.campaignGoal) return
     onSubmit(form)
   }
@@ -87,4 +87,4 @@ export default function InputForm({ onSubmit }) {
       </div>
     </div>
   )
-}
+}//built by kshitisha
