@@ -7,7 +7,7 @@ from pathlib import Path
 import os
 import json
 
-load_dotenv(dotenv_path=Path(__file__).parent.parent / ".env")
+load_dotenv()
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
 app = FastAPI()
