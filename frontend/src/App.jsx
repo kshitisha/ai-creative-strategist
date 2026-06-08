@@ -16,7 +16,7 @@ export default function App() {
     setLoading(true)
     setError(null)
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/generate`, {
+      const response = await fetch('https://kshitisha-ai-creative-strategist-api.hf.space/generate',  {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
