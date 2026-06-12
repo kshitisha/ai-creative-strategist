@@ -19,7 +19,8 @@ export default function BrandNamerModal({ isOpen, onClose, onSelectName }) {
   setError(null)
 
   try {
-    const response = await fetch('https://kshitisha-ai-creative-strategist-api.hf.space/generate-brand-names', {
+    
+      const response = await fetch('https://kshitisha-ai-creative-strategist-api.hf.space/generate-brand-names', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
