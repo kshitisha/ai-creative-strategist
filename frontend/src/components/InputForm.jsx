@@ -1,4 +1,7 @@
+
+
 import { useState } from 'react'
+import BrandNamerModal from './BrandNamerModal'
 
 export default function InputForm({ onSubmit }) {
   const [form, setForm] = useState({
@@ -7,9 +10,15 @@ export default function InputForm({ onSubmit }) {
     targetAudience: '',
     campaignGoal: '',
   })
+  const [isBrandNamerOpen, setIsBrandNamerOpen] = useState(false)
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value })
+  }
+
+  const handleSelectBrandName = (selectedName) => {
+    setForm({ ...form, brandName: selectedName })
+    setIsBrandNamerOpen(false)
   }
 
   const handleSubmit = async () => {
@@ -30,15 +39,28 @@ export default function InputForm({ onSubmit }) {
 
         {/* Fields */}
         <div className="space-y-6">
+          {/* Brand Name Field with Button */}
           <div className="space-y-2">
             <label className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Brand Name</label>
-            <input
-              name="brandName"
-              value={form.brandName}
-              onChange={handleChange}
-              placeholder="e.g. Mountain Peak Coffee"
-              className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-800 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200 transition"
-            />
+            <div className="space-y-2">
+              <input
+                name="brandName"
+                value={form.brandName}
+                onChange={handleChange}
+                placeholder="e.g. Mountain Peak Coffee"
+                className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-800 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200 transition"
+              />
+              {/*  only show if brand name is empty */}
+              {!form.brandName && (
+                <button
+                  type="button"
+                  onClick={() => setIsBrandNamerOpen(true)}
+                  className="w-full py-2.5 px-4 border border-gray-200 text-gray-600 text-xs font-semibold rounded-xl hover:bg-gray-50 hover:border-gray-300 transition-colors"
+                >
+                  Need Help Naming Your Brand?
+                </button>
+              )}
+            </div>
           </div>
 
           <div className="space-y-2">
@@ -85,6 +107,13 @@ export default function InputForm({ onSubmit }) {
         </button>
 
       </div>
+
+      {/* NEW: Brand Name Generator Modal */}
+      <BrandNamerModal
+        isOpen={isBrandNamerOpen}
+        onClose={() => setIsBrandNamerOpen(false)}
+        onSelectName={handleSelectBrandName}
+      />
     </div>
   )
 }//built by kshitisha
